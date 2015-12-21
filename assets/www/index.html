@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter" class="platform-android platform-cordova platform-webview" ng-controller="TodoCtrl">
+  <ion-nav-view>
+  </ion-nav-view>
+
+  <script type="text/ng-template" id="home.html">
+    <ion-view title="Home">
+      <ion-content style="text-align: center" overflow-scroll="true">
+        <img src="img/logo_main.png" width="350px" height="70" style="margin-top: 30px">
+        <div class="list login-form" style="margin-top: 50px">
+          <label class="item item-input">
+            <input type="text" placeholder="Name" ng-model="data.loginId">
+          </label>
+          <label class="item item-input">
+            <input type="text" placeholder="Password" ng-model="data.passWord">
+          </label>
+          <br>
+          <button class="button button-stable" style="width: 100px" ng-click='login()'>
+            Login
+          </button>
+        </div>
+
+      </ion-content>
+      <div class="hide-on-keyboard-open">
+        <div class="bar bar-footer bar-calm hide-on-keyboard-open" id="footer-bar-cus">
+          <div class="title" style="margin-top: 25px;font-size: 3em">Admod</div>
+        </div>
+      </div>
+    </ion-view>
+  </script>
+
+    <script type="text/ng-template" id="listmeeting.html">
+      <ion-view title="Meeting">
+        <ion-content padding="true">
+          <h2>Meetinglist</h2>
+          <label class="item">
+            <div class="row responsive-sm">
+              <div class="col col-center" style="border: 1px solid">.col</div>
+            </div>
+          </label>
+        </ion-content>
+      </ion-view>
+    </script>
+
+  </body>
+</html>

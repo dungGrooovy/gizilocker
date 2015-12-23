@@ -10,9 +10,11 @@ function MeetingController ($scope, $http) {
   $scope.init = function () {
     $http.get('http://railsa.mybluemix.net/api/v1/meeting_list').success(function(response){
       $scope.list = response.data;
-      $scope.name = response.user.name;
-      $scope.kana = response.user.kana;
     });
+  };
+
+  $scope.getDetail = function (meeting_id) {
+      console.log(meeting_id);
   };
 }
 

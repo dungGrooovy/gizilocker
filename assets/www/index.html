@@ -55,15 +55,13 @@
       <ion-view title="Meeting">
         <ion-content padding="true" data-ng-init="init()">
           <h2>Meetinglist</h2>
-          <label class="item" ng-repeat="meeting in list" style="margin-bottom: 10px">
-            <div class="row responsive-sm">
-              <div class="col col-center" style="border: 1px solid" ng-bind="meeting.name">.col</div>
+          <ion-scroll scrollbar-y="true" style="margin-bottom: 10px;height: 400px">
+            <div class="row responsive-sm" ng-repeat="meeting in list">
+              <div class="col col-center clickable" style="border: 1px solid" ng-bind="meeting.name" ng-click="getDetail({{meeting.id}})"></div>
               <p ng-bind="meeting.start_time"></p>
               <p ng-bind="meeting.venue"></p>
-              <p ng-bind="name"></p>
-              <p ng-bind="kana"></p>
             </div>
-          </label>
+          </ion-scroll>
         </ion-content>
       </ion-view>
     </script>

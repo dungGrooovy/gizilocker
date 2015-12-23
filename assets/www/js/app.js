@@ -6,7 +6,14 @@
 function TodoController ($scope, $location) {
 }
 
-function MeetingController ($scope, $location) {
+function MeetingController ($scope, $http) {
+  $scope.init = function () {
+    $http.get('http://railsa.mybluemix.net/api/v1/meeting_list').success(function(response){
+      $scope.list = response.data;
+      $scope.name = response.user.name;
+      $scope.kana = response.user.kana;
+    });
+  };
 }
 
 function LoginController ($scope, $http, $location) {

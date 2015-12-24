@@ -9,7 +9,6 @@ function TodoController ($scope, $location) {
 function DetailController ($scope, MeetingService,$http) {
   $scope.detail = function () {
     var id = MeetingService.getID();
-    $scope.ID = id;
     $http.get('http://railsa.mybluemix.net/api/v1/meeting_list/' + id).success(function (response) {
       $scope.proceduce = response.data;
     });
@@ -27,6 +26,10 @@ function MeetingController ($scope, $http,$location, MeetingService) {
     MeetingService.setID(meeting_id);
     $location.path("/Detail");
   };
+
+  $scope.createNew = function () {
+
+  }
 }
 
 function LoginController ($scope, $http, $location) {
@@ -60,7 +63,7 @@ function route($stateProvider, $urlRouterProvider) {
       })
       .state('detail', {
         url: '/Detail',
-        templateUrl: 'templates/detail.html',
+        templateUrl: 'templates/meeting/detail.html',
         controller: 'DetailCtrl'
       })
       .state('home', {

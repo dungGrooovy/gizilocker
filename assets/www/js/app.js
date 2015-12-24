@@ -6,7 +6,17 @@
 function TodoController ($scope, $location) {
 }
 
-function MeetingController ($scope, $http) {
+function DetailController ($scope, MeetingService,$http) {
+  $scope.detail = function () {
+    var id = MeetingService.getID();
+    $scope.ID = id;
+    $http.get('http://railsa.mybluemix.net/api/v1/meeting_list/' + id).success(function (response) {
+      $scope.proceduce = response.data;
+    });
+  };
+}
+
+function MeetingController ($scope, $http,$location, MeetingService) {
   $scope.init = function () {
     $http.get('http://railsa.mybluemix.net/api/v1/meeting_list').success(function(response){
       $scope.list = response.data;
@@ -14,7 +24,8 @@ function MeetingController ($scope, $http) {
   };
 
   $scope.getDetail = function (meeting_id) {
-      console.log(meeting_id);
+    MeetingService.setID(meeting_id);
+    $location.path("/Detail");
   };
 }
 
@@ -28,6 +39,16 @@ function LoginController ($scope, $http, $location) {
     });
   };
 }
+
+function MeetingService() {
+  var id;
+    this.getID =  function () {
+      return id;
+    };
+    this.setID = function(value) {
+      id = value;
+    };
+}
 function route($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/')
 
@@ -36,6 +57,11 @@ function route($stateProvider, $urlRouterProvider) {
         url: '/Meeting',
         templateUrl: 'listmeeting.html',
         controller: 'MeetingCtrl'
+      })
+      .state('detail', {
+        url: '/Detail',
+        templateUrl: 'templates/detail.html',
+        controller: 'DetailCtrl'
       })
       .state('home', {
         url: '/',
@@ -46,9 +72,11 @@ function route($stateProvider, $urlRouterProvider) {
 }
 //http://railsa.mybluemix.net/api/v1/hanlder
 angular.module('starter', ['ionic'])
+  .service('MeetingService', MeetingService)
   .controller('TodoCtrl', TodoController)
   .controller('LoginCtrl', LoginController)
   .controller('MeetingCtrl', MeetingController)
+  .controller('DetailCtrl',DetailController)
   .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
       if(window.cordova && window.cordova.plugins.Keyboard) {
